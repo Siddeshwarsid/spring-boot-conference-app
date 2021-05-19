@@ -330,19 +330,19 @@ VALUES (1,40),
 
 GO
 
-INSERT INTO workshops (workshop_id,workshop_name,description,requirements,room,capacity)
-VALUES (1,'More Effective Agile Practices','','','Cedar',50),
-       (2,'Azure DevOps One Day Bootcamp','','','Cherry',50),
-       (3,'Level Up Your Architecure Skills','','','Maple',20),
-       (4,'Building Microservices with Spring','','','Aspen',30),
-       (5,'SQL Server Performance Tuning','','','Hickory',40),
-       (6,'Serverless Architectures Using AWS','','','Cottonwood',30),
-       (7,'Architecting Large Scale React Applications','','','Sycamore',30),
-       (8,'Machine Learning Quick Start','','','Chestnut',40),
-       (9,'Data Analytics with Tableau','','','Poplar',40),
-       (10,'Python for Enterprise Developers','','','Birch',40),
-       (11,'Hands on Vue.js','','','Ash',40),
-       (12,'Building APIs in ASP.NET Core','','','Oak',30);
+INSERT INTO workshops (workshop_name,description,requirements,room,capacity)
+VALUES ('More Effective Agile Practices','','','Cedar',50),
+       ('Azure DevOps One Day Bootcamp','','','Cherry',50),
+       ('Level Up Your Architecure Skills','','','Maple',20),
+       ('Building Microservices with Spring','','','Aspen',30),
+       ('SQL Server Performance Tuning','','','Hickory',40),
+       ('Serverless Architectures Using AWS','','','Cottonwood',30),
+       ('Architecting Large Scale React Applications','','','Sycamore',30),
+       ('Machine Learning Quick Start','','','Chestnut',40),
+       ('Data Analytics with Tableau','','','Poplar',40),
+       ('Python for Enterprise Developers','','','Birch',40),
+       ('Hands on Vue.js','','','Ash',40),
+       ('Building APIs in ASP.NET Core','','','Oak',30);
 
 GO
 -- TODO: workshop_speakers
