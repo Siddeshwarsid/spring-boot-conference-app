@@ -27,7 +27,7 @@ spec:
           - name: SQL_DB_USER
             value: SA
           - name: SQL_DB_PASSWORD
-            # value: June@2018
+#            value: May@2021
             valueFrom:
               secretKeyRef:
                 name: sqlsecret
