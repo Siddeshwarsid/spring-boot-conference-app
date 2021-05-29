@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: conferenceapi
+  labels:
+    run: conferenceapi
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: conferenceapi
+
+  template:
+    metadata:
+      labels:
+        run: conferenceapi
+    spec:
+      containers:
+      - name: conferenceapi
+        image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: SQL_DB_URL
+            value: jdbc:sqlserver://db-deployment;databaseName=conference_app
+          - name: SQL_DB_USER
+            value: SA
+          - name: SQL_DB_PASSWORD
+            # value: June@2018
+            valueFrom:
+              secretKeyRef:
+                name: sqlsecret
+                key: sapassword
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
