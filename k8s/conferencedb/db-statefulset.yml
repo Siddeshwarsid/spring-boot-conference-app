@@ -27,11 +27,11 @@ spec:
         - name: ACCEPT_EULA
           value: "Y"
         - name: SA_PASSWORD
-          value: May@2021
-#          valueFrom:
-#            secretKeyRef:
-#              name: sqlsecret
-#              key: sapassword
+#          value: May@2021
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecret
+              key: sapassword
         - name: MSSQL_PID
           value: Developer
         volumeMounts:
