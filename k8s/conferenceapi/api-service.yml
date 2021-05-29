@@ -5,9 +5,9 @@ metadata:
   name: conferenceapi
 spec:
   # type: NodePort
-  type: LoadBalancer
-  # type: ClusterIP
+#  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - port: 8080
+    - port: 8080
   selector:
     run: conferenceapi
