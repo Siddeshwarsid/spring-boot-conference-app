@@ -45,9 +45,16 @@ spec:
         livenessProbe:
           httpGet:
             port: 8080
-            path: /actuator/health
+            path: /actuator/health/liveness
           initialDelaySeconds: 30
           periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/readiness
+          initialDelaySeconds: 120
+          periodSeconds: 5
+          failureThreshold: 5
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
