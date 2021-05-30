@@ -28,3 +28,5 @@ get pods `
 # kubectl port-forward prometheus-grafana-7b764c9d78-xjtr5 `
 # 3000 `
 # --namespace monitoring
+
+# prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090
