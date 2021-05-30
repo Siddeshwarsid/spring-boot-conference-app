@@ -23,10 +23,10 @@ spec:
         imagePullPolicy: IfNotPresent
         resources:
           requests:
-            cpu: "200m" #2% of a core
+            cpu: "200m" #20% of a core
             memory: "250Mi"
           limits:
-            cpu: "500m" #5% of a core
+            cpu: "500m" #50% of a core
             memory: "500Mi"
         env:
           - name: SQL_DB_URL
