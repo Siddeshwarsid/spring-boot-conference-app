@@ -3,9 +3,6 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 
 helm repo update
 
-# Write-Host "Creating monitoring namespace" -ForegroundColor Yellow
-# kubectl create namespace monitoring
-
 Write-Host "Installing prometheus using Helm chart" -ForegroundColor Yellow
 helm install prometheus `
 prometheus-community/kube-prometheus-stack  `
