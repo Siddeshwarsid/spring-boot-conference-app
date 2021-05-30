@@ -21,6 +21,13 @@ spec:
       - name: conferenceapi
         image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: "20m" #2% of a core
+            memory: "250Mi"
+          limits:
+            cpu: "50m" #5% of a core
+            memory: "500Mi"
         env:
           - name: SQL_DB_URL
             value: jdbc:sqlserver://db-deployment;databaseName=conference_app
