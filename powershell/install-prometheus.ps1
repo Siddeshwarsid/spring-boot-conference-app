@@ -1,3 +1,5 @@
+#reference youtube video https://www.youtube.com/watch?v=XrGN2UvVPv0
+
 Write-Host "Adding Helm repo for prometheus-community chart" -ForegroundColor Yellow
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
@@ -6,6 +8,7 @@ helm repo update
 Write-Host "Installing / upgrading prometheus using Helm chart" -ForegroundColor Yellow
 helm upgrade --install prometheus `
 prometheus-community/kube-prometheus-stack  `
+--values prometheus_values.yaml `
 --create-namespace `
 --wait `
 --namespace monitoring
