@@ -52,7 +52,7 @@ spec:
           httpGet:
             port: 8080
             path: /actuator/health/readiness
-          initialDelaySeconds: 120
+          initialDelaySeconds: 45
           periodSeconds: 5
           failureThreshold: 5
       restartPolicy: Always
