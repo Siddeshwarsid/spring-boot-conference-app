@@ -24,7 +24,7 @@ spec:
       containers:
       - name: conferenceapi
         image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: "200m" #20% of a core
@@ -44,7 +44,8 @@ spec:
                 name: sqlsecret
                 key: sapassword
         ports:
-        - containerPort: 8080
+        - name: http-metrics
+          containerPort: 8080
           protocol: TCP
         livenessProbe:
           httpGet:

@@ -3,11 +3,14 @@ kind: Service
 
 metadata:
   name: conferenceapi
+  labels:
+    k8s-apps: http
 spec:
   # type: NodePort
 #  type: LoadBalancer
   type: ClusterIP
   ports:
-    - port: 8080
+    - name: http-metrics
+      port: 8080
   selector:
     run: conferenceapi
