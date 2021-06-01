@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: kube-state-metrics
-    k8s-app: kube-state-metrics
+    k8s-apps: http
   annotations:
     alpha.monitoring.coreos.com/non-namespaced: "true"
   name: kube-state-metrics

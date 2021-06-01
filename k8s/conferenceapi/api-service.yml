@@ -1,16 +1,18 @@
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: conferenceapi
-  labels:
-    k8s-apps: http
-spec:
-  # type: NodePort
-#  type: LoadBalancer
-  type: ClusterIP
-  ports:
-    - name: http-metrics
-      port: 8080
-  selector:
-    run: conferenceapi
+#apiVersion: v1
+#kind: Service
+#
+#metadata:
+#  name: spring-prometheus-demo-service
+#  labels:
+#    app: spring-prometheus-demo
+#spec:
+#  # type: NodePort
+##  type: LoadBalancer
+#  type: ClusterIP
+#  ports:
+#    - name: http-traffic
+#      protocol: TCP
+#      port: 8080
+#      targetPort: 8080
+#  selector:
+#    app: spring-prometheus-demo
