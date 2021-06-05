@@ -7,8 +7,8 @@ metadata:
     app: spring-prometheus-demo
 spec:
   # type: NodePort
-#  type: LoadBalancer
-  type: ClusterIP
+  type: LoadBalancer
+#  type: ClusterIP
   ports:
     - name: http-traffic
       protocol: TCP
