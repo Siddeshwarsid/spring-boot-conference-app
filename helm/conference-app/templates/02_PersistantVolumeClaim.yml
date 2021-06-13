@@ -10,4 +10,4 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 500M
+      storage: {{.Values.pvc.storage}}
