@@ -2,9 +2,9 @@ apiVersion: v1
 kind: Service
 
 metadata:
-  name: spring-prometheus-demo-service
+  name: ocnference-api-service
   labels:
-    app: spring-prometheus-demo
+    app: conference-app
 spec:
   # type: NodePort
   type: LoadBalancer
@@ -15,4 +15,4 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    app: spring-prometheus-demo
+    app: conference-api

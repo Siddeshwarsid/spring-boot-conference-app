@@ -10,6 +10,9 @@ pvc:
 api:
   image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
 
+conferenceDb:
+  image: mcr.microsoft.com/mssql/server:2019-latest
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent

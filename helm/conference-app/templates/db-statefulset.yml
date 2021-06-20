@@ -22,7 +22,8 @@ spec:
 
       containers:
       - name: sql2019
-        image: mcr.microsoft.com/mssql/server:2019-latest
+#        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: {{ .Values.conferenceDb.image }}
         imagePullPolicy: Always
         ports:
         - name: dbport
