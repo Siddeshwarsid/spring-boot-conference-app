@@ -13,6 +13,8 @@ prometheus-community/kube-prometheus-stack  `
 --wait `
 --namespace monitoring
 
+# --set kubelet.serviceMonitor.https=true
+
 
 Write-Host "Display pods..." -ForegroundColor Yellow
 kubectl --namespace monitoring `
@@ -68,7 +70,9 @@ alter manager port 9093
  kubectl port-forward --namespace monitoring svc/prometheus-kube-prometheus-alertmanager 9093:9093
 
  grafana port 3000
-  kubectl --namespace monitoring port-forward svc/grafana 8080:3000
+  kubectl --namespace monitoring port-forward svc/prometheus-grafana 80:80
 
    echo "User: admin"
       echo "Password: $(kubectl get secret grafana-admin --namespace monitoring -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode)"
+
+      kubectl get secret prometheus-grafana --namespace monitoring -o jsonpath="{.data.admin-password}"

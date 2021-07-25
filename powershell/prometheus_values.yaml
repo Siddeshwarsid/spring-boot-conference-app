@@ -3,7 +3,8 @@
 kubelet:
   enabled: true
   serviceMonitor:
-    https: false
+    https: true
+#    https: false
 
 #Disable scrapping of master node components
 kubeControllerManager:
