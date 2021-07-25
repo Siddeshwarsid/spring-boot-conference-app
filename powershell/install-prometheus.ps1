@@ -76,3 +76,9 @@ alter manager port 9093
       echo "Password: $(kubectl get secret grafana-admin --namespace monitoring -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}" | base64 --decode)"
 
       kubectl get secret prometheus-grafana --namespace monitoring -o jsonpath="{.data.admin-password}"
+
+# Working version of Springboot application dashboard
+#https://grafana.com/grafana/dashboards/11955
+
+#monitoring spring prometheus grafana
+#https://ordina-jworks.github.io/monitoring/2020/11/16/monitoring-spring-prometheus-grafana.html
