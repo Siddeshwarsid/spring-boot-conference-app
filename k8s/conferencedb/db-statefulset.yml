@@ -8,12 +8,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-prometheus-demo
+      app: conference-demo-db
   template:
     metadata:
       labels:
 #        app: db
-        app: spring-prometheus-demo
+        app: conference-demo-db
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8080"

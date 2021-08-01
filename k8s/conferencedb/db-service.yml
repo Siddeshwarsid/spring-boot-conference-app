@@ -4,7 +4,7 @@ metadata:
   name: db-deployment
 spec:
   selector:
-    app: spring-prometheus-demo
+    app: conference-demo-db
   ports:
     - protocol: TCP
       port: 1433
