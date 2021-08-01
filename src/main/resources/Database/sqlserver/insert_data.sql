@@ -5,11 +5,17 @@ VALUES ('P','Premium','Access to all conference events plus attend the workshop 
 
 GO
 
+PRINT 'Finished inserting data into ticket_types table in database conference_app'
+GO
+
 INSERT INTO pricing_categories (pricing_category_code,pricing_category_name,pricing_start_date,pricing_end_date)
 VALUES ('E','Early Bird','2019-12-01','2020-01-15'),
        ('R','Regular','2020-01-16','2020-03-20'),
        ('L','Last Minute','2020-03-21','2020-04-07');
 
+GO
+
+PRINT 'Finished inserting data into pricing_categories table in database conference_app'
 GO
 
 INSERT INTO ticket_prices (ticket_type_code,pricing_category_code,base_price)
@@ -25,7 +31,8 @@ VALUES ('P','E',800),
 
 GO
 
-
+PRINT 'Finished inserting data into ticket_prices table in database conference_app'
+GO
 -- TODO: discount_codes
 
 INSERT INTO time_slots (time_slot_date,start_time,end_time,is_keynote_time_slot)
@@ -42,6 +49,9 @@ VALUES ('2020-04-09','9:00','9:45',1),
        ('2020-04-10','13:00','14:00',0),
        ('2020-04-10','14:15','15:00',1);
 
+GO
+
+PRINT 'Finished inserting data into time_slots table in database conference_app'
 GO
 
 INSERT INTO sessions (session_name,session_length,session_description)
@@ -119,6 +129,9 @@ VALUES ('Keynote - The Golden Age of Software',45,''),
 
 GO
 
+PRINT 'Finished inserting data into sessions table in database conference_app'
+GO
+
 INSERT INTO session_schedule (time_slot_id,session_id,room)
 VALUES (1,1,'Grand Ballroom'),
        (2,2,'Cedar'),
@@ -193,6 +206,9 @@ VALUES (1,1,'Grand Ballroom'),
        (10,51,'Sycamore');
 GO
 
+PRINT 'Finished inserting data into session_schedule table in database conference_app'
+GO
+
 INSERT INTO tags (description)
 VALUES ('.NET'),
        ('Java'),
@@ -207,6 +223,9 @@ VALUES ('.NET'),
        ('Agile'),
        ('Cloud');
 
+GO
+
+PRINT 'Finished inserting data into tags table in database conference_app'
 GO
 
 -- TODO: session_tags
@@ -253,6 +272,9 @@ VALUES ('Sergio','Becker','Senior Developer','MicroOcean Software','Test', null)
        ('James','King','Staff AWS Engineer','Northern States Bank','Test', null),
        ('Simon','Williams','Chief Technology Officer','NorthernSoft Systems','Test', null);
 
+GO
+
+PRINT 'Finished inserting data into speakers table in database conference_app'
 GO
 
 INSERT INTO session_speakers (session_id,speaker_id)
@@ -330,6 +352,9 @@ VALUES (1,40),
 
 GO
 
+PRINT 'Finished inserting data into session_speakers table in database conference_app'
+GO
+
 INSERT INTO workshops (workshop_name,description,requirements,room,capacity)
 VALUES ('More Effective Agile Practices','','','Cedar',50),
        ('Azure DevOps One Day Bootcamp','','','Cherry',50),
@@ -345,6 +370,7 @@ VALUES ('More Effective Agile Practices','','','Cedar',50),
        ('Building APIs in ASP.NET Core','','','Oak',30);
 
 GO
+
+PRINT 'Finished inserting data into workshops table in database conference_app'
+GO
 -- TODO: workshop_speakers
-
-

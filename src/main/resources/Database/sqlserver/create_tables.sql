@@ -17,6 +17,9 @@ CREATE TABLE attendees
 end
 GO
 
+PRINT 'Finished creating attendees table in database conference_app'
+GO
+
 if not exists (select * from sysobjects where name='ticket_types' and xtype='U')
 BEGIN
             PRINT 'Creating ticket_types table'
@@ -28,6 +31,9 @@ CREATE TABLE ticket_types
     includes_workshop bit      NOT NULL
 );
 end
+GO
+
+PRINT 'Finished creating ticket_types table in database conference_app'
 GO
 
 if not exists (select * from sysobjects where name='pricing_categories' and xtype='U')
@@ -43,6 +49,9 @@ CREATE TABLE pricing_categories
 end
 GO
 
+PRINT 'Finished creating pricing_categories table in database conference_app'
+GO
+
 if not exists (select * from sysobjects where name='ticket_prices' and xtype='U')
 BEGIN
             PRINT 'Creating ticket_prices table'
@@ -54,6 +63,9 @@ CREATE TABLE ticket_prices
     base_price            numeric(8, 2) NOT NULL
 );
 end
+GO
+
+PRINT 'Finished creating ticket_prices table in database conference_app'
 GO
 
 if not exists (select * from sysobjects where name='discount_codes' and xtype='U')
@@ -70,6 +82,9 @@ CREATE TABLE discount_codes
 end
 GO
 
+PRINT 'Finished creating discount_codes table in database conference_app'
+GO
+
 if not exists (select * from sysobjects where name='attendee_tickets' and xtype='U')
 BEGIN
             PRINT 'Creating attendee_tickets table'
@@ -82,6 +97,9 @@ CREATE TABLE attendee_tickets
     net_price          numeric(8, 2) NOT NULL
 );
 end
+GO
+
+PRINT 'Finished creating attendee_tickets table in database conference_app'
 GO
 
 if not exists (select * from sysobjects where name='time_slots' and xtype='U')
@@ -98,6 +116,9 @@ CREATE TABLE time_slots
 end
 GO
 
+PRINT 'Finished creating time_slots table in database conference_app'
+GO
+
 
 if not exists (select * from sysobjects where name='sessions' and xtype='U')
 BEGIN
@@ -110,6 +131,9 @@ CREATE TABLE sessions
     session_length      integer       NOT NULL
 );
 end
+GO
+
+PRINT 'Finished creating sessions table in database conference_app'
 GO
 
 
@@ -126,6 +150,9 @@ CREATE TABLE session_schedule
 end
 GO
 
+PRINT 'Finished creating session_schedule table in database conference_app'
+GO
+
 
 if not exists (select * from sysobjects where name='tags' and xtype='U')
 BEGIN
@@ -138,6 +165,8 @@ CREATE TABLE tags
 end
 GO
 
+PRINT 'Finished creating tags table in database conference_app'
+GO
 
 if not exists (select * from sysobjects where name='session_tags' and xtype='U')
 BEGIN
@@ -148,6 +177,9 @@ CREATE TABLE session_tags
     tag_id     integer NOT NULL REFERENCES tags (tag_id)
 );
 end
+GO
+
+PRINT 'Finished creating session_tags table in database conference_app'
 GO
 
 
@@ -167,6 +199,9 @@ CREATE TABLE speakers
 end
 GO
 
+PRINT 'Finished creating speakers table in database conference_app'
+GO
+
 if not exists (select * from sysobjects where name='session_speakers' and xtype='U')
 BEGIN
             PRINT 'Creating session_speakers table'
@@ -178,6 +213,8 @@ CREATE TABLE session_speakers
 end
 GO
 
+PRINT 'Finished creating session-speakers table in database conference_app'
+GO
 
 if not exists (select * from sysobjects where name='workshops' and xtype='U')
 BEGIN
@@ -194,6 +231,9 @@ CREATE TABLE workshops
 end
 GO
 
+PRINT 'Finished creating workshop table in database conference_app'
+GO
+
 
 if not exists (select * from sysobjects where name='workshop_speakers' and xtype='U')
 BEGIN
@@ -206,6 +246,9 @@ CREATE TABLE workshop_speakers
 end
 GO
 
+PRINT 'Finished creating workshop_speakers table in database conference_app'
+GO
+
 
 if not exists (select * from sysobjects where name='workshop_registrations' and xtype='U')
 BEGIN
@@ -216,4 +259,7 @@ CREATE TABLE workshop_registrations
     attendee_ticket_id integer NOT NULL REFERENCES attendee_tickets (attendee_ticket_id)
 );
 end
+GO
+
+PRINT 'Finished creating workshop_registrations table in database conference_app'
 GO

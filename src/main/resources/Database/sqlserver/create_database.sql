@@ -4,3 +4,6 @@ BEGIN
         CREATE DATABASE [conference_app]
 END;
 GO
+
+PRINT 'Completed creating database conference_app'
+GO
