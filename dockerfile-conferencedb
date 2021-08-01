@@ -1,0 +1,6 @@
+FROM mcr.microsoft.com/mssql-tools
+
+WORKDIR /src
+
+# COPY /src/main/resources/Database/sqlserver/*.sql .sql ./
+COPY *.sql ./
