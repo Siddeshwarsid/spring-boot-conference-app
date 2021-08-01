@@ -27,7 +27,7 @@ spec:
       initContainers:
         - name: init-myservice
           image: ngacrregistry.azurecr.io/nileshgule/conference-demo-sqlclient
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: SA_PASSWORD
               valueFrom:
@@ -37,8 +37,9 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_database.sql"
-            - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_tables.sql"
+            - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_database.sql \
+            && /opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_tables.sql \
+            && /opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i insert_data.sql"
       containers:
       - name: conferenceapi
         image: ngacrregistry.azurecr.io/nileshgule/conferenceapi

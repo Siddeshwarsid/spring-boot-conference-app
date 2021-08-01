@@ -1,3 +1,6 @@
+USE conference_app;
+GO
+
 INSERT INTO ticket_types (ticket_type_code,ticket_type_name,description,includes_workshop)
 VALUES ('P','Premium','Access to all conference events plus attend the workshop of your choice.',1),
        ('S','Standard','Access to all conference keynotes,sessions,community open spaces and the exhibition hall',0),
