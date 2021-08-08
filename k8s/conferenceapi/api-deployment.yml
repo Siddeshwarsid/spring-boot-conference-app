@@ -17,10 +17,10 @@ spec:
       labels:
         app: spring-prometheus-demo
         k8s-apps: http
-      annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "8080"
-        prometheus.io/path: "/actuator/prometheus"
+#      annotations:
+#        prometheus.io/scrape: "true"
+#        prometheus.io/port: "8080"
+#        prometheus.io/path: "/actuator/prometheus"
     spec:
 #              - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_tables.sql;"
 #              - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i insert_data.sql;"
