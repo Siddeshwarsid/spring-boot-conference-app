@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: spring-prometheus-demo
+        app: conference-demo-service
 #        k8s-apps: http
 #      annotations:
 #        prometheus.io/scrape: "true"
