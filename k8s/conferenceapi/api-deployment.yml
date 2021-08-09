@@ -2,28 +2,26 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: spring-prometheus-demo
+  name: conference-demo-api-deployment
   labels:
-    app: spring-prometheus-demo
+    app: conference-demo-service
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-prometheus-demo
+      app: conference-demo-service
 
   template:
     metadata:
       labels:
         app: spring-prometheus-demo
-        k8s-apps: http
+#        k8s-apps: http
 #      annotations:
 #        prometheus.io/scrape: "true"
 #        prometheus.io/port: "8080"
 #        prometheus.io/path: "/actuator/prometheus"
     spec:
-#              - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_tables.sql;"
-#              - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i insert_data.sql;"
       initContainers:
         - name: init-myservice
           image: ngacrregistry.azurecr.io/nileshgule/conference-demo-sqlclient
