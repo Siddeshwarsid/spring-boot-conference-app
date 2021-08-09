@@ -9,7 +9,7 @@ spec:
   groups:
     - name: "conference-demo.rules"
       rules:
-        - alert: PodDown
+        - alert: Conference-Demo-PodDown
           for: 1m
           expr: sum(up{job="spring-prometheus-demo-service"}) < 1 or absent(up{job="spring-prometheus-demo-service"})
           annotations:
