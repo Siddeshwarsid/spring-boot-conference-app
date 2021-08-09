@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+#    prometheus: kube-prometheus-stack-prometheus
+#    role: alert-rules
+    app: kube-prometheus-stack
+    release: prometheus
+  name: conference-demo
+spec:
+  groups:
+    - name: "conference-demo.rules"
+      rules:
+        - alert: PodDown
+          for: 1m
+          expr: sum(up{job="spring-prometheus-demo-service"}) < 1 or absent(up{job="spring-prometheus-demo-service"})
+          annotations:
+            message: The deployment has less than 1 pod running.
