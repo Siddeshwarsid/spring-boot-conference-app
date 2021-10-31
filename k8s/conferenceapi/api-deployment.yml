@@ -1,17 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: conference-demo-api-deployment
   labels:
     app: conference-demo-service
-
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: conference-demo-service
-
   template:
     metadata:
       labels:
@@ -61,7 +58,6 @@ spec:
                 name: sqlsecret
                 key: sapassword
         ports:
-#        - name: http-metrics
         - containerPort: 8080
           protocol: TCP
         livenessProbe:
