@@ -57,6 +57,11 @@ spec:
               secretKeyRef:
                 name: sqlsecret
                 key: sapassword
+          - name: SENTRY_DSN
+            valueFrom:
+              secretKeyRef:
+                key: sentrydsn
+                name: sentrydsnsecret
         ports:
         - containerPort: 8080
           protocol: TCP
