@@ -45,4 +45,4 @@ spec:
       volumes:
       - name: mssqldb
         persistentVolumeClaim:
-          claimName: techtalksdb-data
+          claimName: conferencedb-data

@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: techtalksdb-data
+  name: conferencedb-data
   annotations:
     volume.beta.kubernetes.io/storage-class: azure-disk
 spec:
