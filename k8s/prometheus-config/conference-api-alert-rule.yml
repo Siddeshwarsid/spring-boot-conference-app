@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: kube-prometheus-stack
+    release: prometheus
+    role: alert-rules
+  name: conference-demo-prometheus-rule
+spec:
+  groups:
+    - name: "conference-demo.rules"
+      rules:
+        - alert: Conference-Demo-PodDown
+          for: 1m
+          expr: sum(up{job="conference-demo-service"}) < 1 or absent(up{job="conference-demo-service"})
+          annotations:
+            message: The conference API deployment has less than 1 pod running.

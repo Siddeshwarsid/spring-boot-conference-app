@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  sql.data.client:
+    image: ngacrregistry.azurecr.io/nileshgule/conference-demo-sqlclient
+    build:
+      context: ../src/main/resources/Database/sqlserver
+      dockerfile: ../../../../../dockerfile-conferencedb
+
+  conferenceapi:
+    image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
+    build:
+      context: ../
+      dockerfile: Dockerfile

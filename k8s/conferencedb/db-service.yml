@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-deployment
+spec:
+  selector:
+    app: conference-demo-db
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+#  type: LoadBalancer
+  # type: NodePort
+  type: ClusterIP

@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db-deployment
+spec:
+  serviceName: db-deployment
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      terminationGracePeriodSeconds: 10
+
+      containers:
+      - name: sql2019
+#        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: {{ .Values.conferenceDb.image }}
+        imagePullPolicy: Always
+        ports:
+        - name: dbport
+          containerPort: 1433
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecret
+              key: sapassword
+        - name: MSSQL_PID
+          value: Developer
+        volumeMounts:
+        - name: mssqldb
+          mountPath: /var/opt/data
+#          mountPath: /var/opt/mssql
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: techtalksdb-data

@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conference-demo-api-deployment
+  labels:
+    app: conference-demo-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: conference-demo-service
+  template:
+    metadata:
+      labels:
+        app: conference-demo-service
+#        k8s-apps: http
+#      annotations:
+#        prometheus.io/scrape: "true"
+#        prometheus.io/port: "8080"
+#        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      initContainers:
+        - name: init-myservice
+          image: ngacrregistry.azurecr.io/nileshgule/conference-demo-sqlclient
+          imagePullPolicy: Always
+          env:
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sqlsecret
+                  key: sapassword
+          command:
+            - "sh"
+            - "-c"
+            - "/opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_database.sql \
+            && /opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i create_tables.sql \
+            && /opt/mssql-tools/bin/sqlcmd -S db-deployment -U sa -P $(SA_PASSWORD) -d master -i insert_data.sql"
+      containers:
+      - name: conferenceapi
+        image: ngacrregistry.azurecr.io/nileshgule/conferenceapi
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "200m" #20% of a core
+            memory: "250Mi"
+          limits:
+            cpu: "500m" #50% of a core
+            memory: "500Mi"
+        env:
+          - name: SQL_DB_URL
+            value: jdbc:sqlserver://db-deployment;databaseName=conference_app
+          - name: SQL_DB_USER
+            value: SA
+          - name: SQL_DB_PASSWORD
+#            value: May@2021
+            valueFrom:
+              secretKeyRef:
+                name: sqlsecret
+                key: sapassword
+          - name: SENTRY_DSN
+            valueFrom:
+              secretKeyRef:
+                key: sentrydsn
+                name: sentrydsnsecret
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/liveness
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/readiness
+          initialDelaySeconds: 45
+          periodSeconds: 5
+          failureThreshold: 5
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+
+#---
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: spring-prometheus-demo
+#  labels:
+#    app: spring-prometheus-demo
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: spring-prometheus-demo
+#  template:
+#    metadata:
+#      labels:
+#        app: spring-prometheus-demo
+#    spec:
+#      containers:
+#        - name: spring-prometheus-demo
+#          image: brianmmcclain/spring-prometheus-demo:0.0.1-SNAPSHOT
+#          imagePullPolicy: Always
+#          ports:
+#            - containerPort: 8080
+#
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: spring-prometheus-demo-service
+#  labels:
+#    app: spring-prometheus-demo
+#spec:
+#  selector:
+#    app: spring-prometheus-demo
+#  ports:
+#    - protocol: TCP
+#      name: http-traffic
+#      port: 8080
+#      targetPort: 8080

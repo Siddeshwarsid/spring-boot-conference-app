@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: spring-prometheus-demo
+  labels:
+    app: spring-prometheus-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conference-api
+
+  template:
+    metadata:
+      labels:
+        app: conference-api
+        k8s-apps: http
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      containers:
+      - name: conferenceapi
+        image: {{.Values.api.image}}
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "200m" #20% of a core
+            memory: "250Mi"
+          limits:
+            cpu: "500m" #50% of a core
+            memory: "500Mi"
+        env:
+          - name: SQL_DB_URL
+            value: jdbc:sqlserver://db-deployment;databaseName=conference_app
+          - name: SQL_DB_USER
+            value: SA
+          - name: SQL_DB_PASSWORD
+#            value: May@2021
+            valueFrom:
+              secretKeyRef:
+                name: sqlsecret
+                key: sapassword
+        ports:
+#        - name: http-metrics
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/liveness
+          initialDelaySeconds: 30
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: 8080
+            path: /actuator/health/readiness
+          initialDelaySeconds: 45
+          periodSeconds: 5
+          failureThreshold: 5
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
