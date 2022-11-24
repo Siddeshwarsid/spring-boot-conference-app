@@ -34,3 +34,7 @@ build/
 
 ### Helm ###
 helm/*.tgz
+
+### Gradle ###
+.gradle
+/build/
