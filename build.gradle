@@ -17,24 +17,24 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.5'
     implementation 'org.springframework.boot:spring-boot-starter-jetty:2.4.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.4.5'
-    implementation 'io.micrometer:micrometer-core:1.6.6'
+    implementation 'io.micrometer:micrometer-core:1.10.2'
     implementation 'io.micrometer:micrometer-registry-prometheus:1.10.2'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.13'
-    implementation 'io.sentry:sentry-spring-boot-starter:6.8.0'
+    implementation 'io.sentry:sentry-spring-boot-starter:5.3.0'
     implementation 'org.springframework.boot:spring-boot-configuration-processor:2.4.5'
-    implementation 'org.projectlombok:lombok:1.18.20'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.0'
-    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:8.4.1.jre8'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.5'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc:11.2.1.jre17'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.5'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 description = 'conference-demo'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_12
 
 publishing {
     publications {
